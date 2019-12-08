@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2013 The MathWorks, Inc.
+-->        
+<lookupTable>
+
+    <entry name="qemu:license">http://wiki.qemu.org/License</entry>
+    <entry name="qemu:baseurl">http://lassauge.free.fr/qemu/release</entry>
+    <entry name="qemu:version">1.5.2</entry>
+    <entry name="qemu:filename">qemu-system-armw.exe</entry>
+    <entry name="qemu:archive">Qemu-1.5.2-windows.zip</entry>
+
+    <entry name="openvpn:license">http://openvpn.net/index.php/license.html</entry>
+    <!-- OLD: updated PKIX <entry name="openvpn:baseurl">https://www.privatetunnel.com/us/client</entry> 
+     -->
+    <entry name="openvpn:baseurl">http://swupdate.openvpn.net/privatetunnel/client</entry>
+    <entry name="openvpn:version">2.0.0.0-58-18</entry>
+    <entry name="openvpn:filename">tapinstall.exe</entry>
+    <entry name="openvpn:installer">privatetunnel.msi</entry>
+    <entry name="openvpn:archive">privatetunnel.msi</entry>
+
+    <entry name="busybox14a:license">http://www.mathworks.com/supportpackages/license/gnu_gpl</entry>
+    <entry name="busybox14a:baseurl">http://www.mathworks.com/supportfiles/supportpackages/resources/armcortexa/R2014a</entry>
+    <entry name="busybox14a:version">buildroot-2013-05</entry>
+    <entry name="busybox14a:archive">armcortexa9_busybox.zip</entry>
+	
+	<entry name="busybox15b:license">http://www.mathworks.com/supportpackages/license/gnu_gpl</entry>
+    <entry name="busybox15b:baseurl">http://www.mathworks.com/supportfiles/embeddedtargets/firmware/arm_cortex_a</entry>
+    <entry name="busybox15b:version">buildroot-2015-03</entry>
+    <entry name="busybox15b:archive">armcortexa9_busybox_notap.zip</entry>
+
+</lookupTable>

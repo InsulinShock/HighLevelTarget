@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<productinfo version="3.0">
+   <buildconfigurationinfo AssemblyFlags="" CPPCompileFlags="" CPPLinkFlags="" Name="">
+      <CompileFlags>-I$(BOOST_LIB) -DBOOST_CB_DISABLE_DEBUG -DBOOST_LOG_API_VERSION=200 -DBOOST_THREAD_FUTURE=unique_future -DBOOST_ALL_NO_LIB -DBOOST_ALL_DYN_LINK</CompileFlags>
+      <LinkFlags>-lstdc++ -lboost_system -lboost_date_time -lboost_chrono -lboost_thread -lpthread -lboost_unit_test_framework -L$(BOOST_LIB)/boost/libs_linaro_4_8</LinkFlags>
+      <Libraries>$(TARGET_ROOT)/bin/libcodertarget_TargetServices.lib</Libraries>
+      <SupportedOperatingSystems>all</SupportedOperatingSystems>
+      <SupportedToolchains>Linaro Toolchain v4.8</SupportedToolchains>
+   </buildconfigurationinfo>
+</productinfo>

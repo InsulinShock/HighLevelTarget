@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--Copyright 2013-2015 The MathWorks, Inc. -->
+<!--Support Package Repository for ARM Cortex-A -->
+<RTTPackageRepository>
+    <ThirdPartyPackage name="Linaro Toolchain v4.8" url="https://launchpad.net/linaro-toolchain-binaries/+download">
+        <Platform name="PCWIN,PCWIN64" version="$[linarotoolchain:version]" filename="arm-linux-gnueabihf-gcc.exe" destdir="Linaro-Toolchain-v4.8"
+                  predownloadcmd = "matlab:codertarget.arm_cortex_a.internal.predownloadcheck('$(DESTDIR)','linarotoolchain', $(3PINFO))"
+                  installer="" archive="$[linarotoolchain:archive]" 
+                  downloadurl="$[linarotoolchain:baseurl]" 
+                  installcmd="&quot;$(DOWNLOADDIR)$(FILESEP)$(INSTALLER)&quot; /mode silent /prefix &quot;$(INSTALLDIR)$(FILESEP)$(DESTDIR)&quot;"
+                  removecmd=""
+                  licenseurl="http://www.mathworks.com/supportpackages/license/linarotoolchain"
+                  instructionset="linarogcctoolchain_4_8_win64.xml">
+        </Platform>
+    </ThirdPartyPackage>
+    
+    <ThirdPartyPackage name="Boost Libraries for ARM Cortex-A" url="http://www.mathworks.com">
+        <Platform name="ALL" version="$[libboost_arm_linaro_4_8:version]" filename="" destdir="libboost_arm_cortex_a" 
+                  installer="" archive="$[libboost_arm_linaro_4_8:archive]"
+                  downloadurl="$[libboost_arm_linaro_4_8:baseurl]"
+                  installcmd="matlab:unzip('$(DOWNLOADDIR)$(FILESEP)$(ARCHIVE)', '$(INSTALLDIR)$(FILESEP)$(DESTDIR)')"
+                  removecmd=""
+                  licenseurl="http://www.boost.org/users/license.html"
+                  instructionset="linaroboostlibraries_1_57_0_4_8_all.xml">
+        </Platform>
+    </ThirdPartyPackage> 
+    
+    <ThirdPartyPackage name="SDL" url="http://www.libsdl.org">
+        <Platform name="PCWIN" version="1.2.15" filename="$[libsdlwin32:filename]" destdir="sdl" 
+                  installer="" archive="$[libsdlwin32:archive]" 
+                  downloadurl="$[libsdlwin32:baseurl]" 
+                  installcmd="matlab:unzip('$(DOWNLOADDIR)$(FILESEP)$(ARCHIVE)', '$(INSTALLDIR)$(FILESEP)armcortexa$(FILESEP)toolbox$(FILESEP)target$(FILESEP)supportpackages$(FILESEP)arm_cortex_a$(FILESEP)blocks$(FILESEP)mex')"
+                  removecmd=""
+                  licenseurl="http://www.mathworks.com/supportpackages/license/libsdl"
+                  instructionset="sdl_1_2_15_all.xml">
+        </Platform>
+        <Platform name="PCWIN64" version="1.2.15" filename="$[libsdlwin64:filename]" destdir="sdl" 
+                  installer="" archive="$[libsdlwin64:archive]" 
+                  downloadurl="$[libsdlwin64:baseurl]" 
+                  installcmd="matlab:unzip('$(DOWNLOADDIR)$(FILESEP)$(ARCHIVE)', '$(INSTALLDIR)$(FILESEP)armcortexa$(FILESEP)toolbox$(FILESEP)target$(FILESEP)supportpackages$(FILESEP)arm_cortex_a$(FILESEP)blocks$(FILESEP)mex')"
+                  removecmd=""
+                  licenseurl="http://www.mathworks.com/supportpackages/license/libsdl"
+                  instructionset="sdl_1_2_15_win64.xml">
+        </Platform>
+        <Platform name="ALL" version="1.2.15" filename="$[libsdlwin32:filename]" destdir="sdl" 
+                  installer="" archive="$[libsdlwin32:archive]" 
+                  downloadurl="$[libsdlwin32:baseurl]" 
+                  installcmd="matlab:unzip('$(DOWNLOADDIR)$(FILESEP)$(ARCHIVE)', '$(INSTALLDIR)$(FILESEP)armcortexa$(FILESEP)toolbox$(FILESEP)target$(FILESEP)supportpackages$(FILESEP)arm_cortex_a$(FILESEP)blocks$(FILESEP)mex')"
+                  removecmd=""
+                  licenseurl="http://www.mathworks.com/supportpackages/license/libsdl"
+                  instructionset="sdl_1_2_15_all.xml">
+        </Platform>
+    </ThirdPartyPackage>
+</RTTPackageRepository>

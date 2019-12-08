@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<productinfo version="3.0">
+   <name>ARM Cortex-A9 (QEMU)</name>
+   <buildconfigurationinfo CPPCompileFlags="" CPPLinkFlags="">
+      <AssemblyFlags>-march=armv7-a -mfloat-abi=hard -mfpu=neon</AssemblyFlags>
+      <CompileFlags>-march=armv7-a -mfloat-abi=hard -mfpu=neon -mtune=cortex-a9</CompileFlags>
+      <Defines>ARM_PROJECT</Defines>
+      <IncludePaths>$(ARM_CORTEX_A_ROOT_DIR)/include</IncludePaths>
+      <IncludePaths>$(ARM_CORTEX_A_ROOT_DIR)/blocks/sfcn/include</IncludePaths>
+      <LinkFlags>-march=armv7-a -mfloat-abi=hard -mfpu=neon -mtune=cortex-a9</LinkFlags>
+      <Name>Linaro Toolchain v4.8</Name>
+      <SupportedOperatingSystems>all</SupportedOperatingSystems>
+      <SupportedToolchains>all</SupportedToolchains>
+   </buildconfigurationinfo>
+</productinfo>
