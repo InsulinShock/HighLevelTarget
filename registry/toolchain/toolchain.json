@@ -1,4 +1,7 @@
 {"toolchain": {
+    "Name": "gcc-linaro-arm-linux-gnueabihf",
+    "Platform": "windows",
+    "BuilderApplication": "Platform",
     "name": "on",
     "attributes": {
         "TransformPths": true

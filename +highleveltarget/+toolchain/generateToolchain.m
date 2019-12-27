@@ -1,4 +1,6 @@
 function [tc, results] = generateToolchain()
+%gcc_linaro_arm_linux_gnueabihf
+
 % Copyright 2013-2018 The MathWorks, Inc.
 
 toolchain.Platforms  = {'win64', 'win32','glnxa64','maci64'};
@@ -13,15 +15,14 @@ end
 function tc = getToolchainInfoFor(platform, version, artifact, varargin)
 % Toolchain Information
 
-tc = coder.make.ToolchainInfo('BuildArtifact', 'gmake makefile', 'SupportedLanguages', {'C++'});
+tc = coder.make.ToolchainInfo('BuildArtifact', 'gmake makefile', 'SupportedLanguages', {'Asm/C/C++'});
 info = getARMCortexAInfo();
-tc.Name = coder.make.internal.formToolchainName(info.ToolChainName, ...
-    platform, version, artifact);
+tc.Name = "High_Level_Toolchain";
 tc.Platform = platform;
 tc.setBuilderApplication(platform);
 
 % MATLAB setup
-tc.MATLABSetup = 'codertarget.arm_cortex_a.internal.addCompilerPath();';
+% tc.MATLABSetup = 'codertarget.arm_cortex_a.internal.addCompilerPath();';
 
 % Toolchain's attribute
 tc.addAttribute('TransformPathsWithSpaces');
@@ -29,23 +30,27 @@ tc.addAttribute('SupportsUNCPaths',     false);
 tc.addAttribute('SupportsDoubleQuotes', true);
 
 % Add inline commands
-objectExtension = '.o';
-depfileExtension = '.dep';
-tc.InlinedCommands{1} = ['ALL_DEPS:=$(patsubst %',objectExtension,',%', depfileExtension, ',$(ALL_OBJS))'];
-tc.InlinedCommands{2} = 'all:';
-tc.InlinedCommands{3} = '';
+% objectExtension = '.o';
+% depfileExtension = '.dep';
+% tc.InlinedCommands{1} = ['ALL_DEPS:=$(patsubst %',objectExtension,',%', depfileExtension, ',$(ALL_OBJS))'];
+% tc.InlinedCommands{2} = 'all:';
+% tc.InlinedCommands{3} = '';
 
 % Add include files
 make = tc.BuilderApplication();
-make.IncludeFiles = {   'codertarget_assembly_flags.mk',... 
-                        '../codertarget_assembly_flags.mk',... 
-                        '../../codertarget_assembly_flags.mk',... 
-                        '$(ALL_DEPS)'};
+%make.IncludeFiles = {...
+%    'codertarget_assembly_flags.mk', ...
+%    '../codertarget_assembly_flags.mk', ...
+%    '../../codertarget_assembly_flags.mk', ...
+%    '$(ALL_DEPS)'};
+%}
+
 
 % Add macros
-tc.addIntrinsicMacros({'TARGET_LOAD_CMD_ARGS'});
-tc.addIntrinsicMacros({'TARGET_PKG_INSTALLDIR'});
-tc.addIntrinsicMacros({'LINARO_TOOLCHAIN_4_8'});
+% tc.addIntrinsicMacros({'TARGET_LOAD_CMD_ARGS'});
+% tc.addIntrinsicMacros({'TARGET_PKG_INSTALLDIR'});
+% tc.addIntrinsicMacros({'LINARO_TOOLCHAIN_4_8'});
+tc.addMacro('LINARO_TOOLCHAIN_4_8', fullfile(highleveltarget.utilities.getRootFolder(),
 
 if any(ismember(platform, {'win64','win32'}))
     % Work around for cygwin, override SHELL variable
@@ -54,9 +59,10 @@ if any(ismember(platform, {'win64','win32'}))
     tc.addMacro('SHELL', '%SystemRoot%/system32/cmd.exe');
 end
 
-tc.addMacro('CCOUTPUTFLAG',     '--output_file=');
-tc.addMacro('LDOUTPUTFLAG',     '--output_file=');
+% tc.addMacro('CCOUTPUTFLAG',     '--output_file=');
+% tc.addMacro('LDOUTPUTFLAG',     '--output_file=');
 % tc.addMacro('CPFLAGS', '-O binary');
+
 
 % Assembler
 assembler = tc.getBuildTool('Assembler');
@@ -75,7 +81,6 @@ asmObjBuildItem.setMacro('ASMOBJ_EXT');
 assembler.addFileExtension( 'DependencyFile', coder.make.BuildItem('ASM_EXT', ['.s', depfileExtension]));
 assembler.DerivedFileExtensions = {'.s.dep'};
 
-%{
 % Compiler
 compiler = tc.getBuildTool('C Compiler');
 compiler.setName([info.ToolChainName, version, ' C Compiler']);
@@ -94,7 +99,6 @@ cObjBuildItem = compiler.FileExtensions.getValue('Object');
 cObjBuildItem.setMacro('COBJ_EXT');
 compiler.addFileExtension( 'DependencyFile', coder.make.BuildItem('C_EXT', ['.c', depfileExtension]));
 compiler.DerivedFileExtensions = {'.c.dep'};
-%}
 
 % C++ compiler
 cppcompiler = tc.getBuildTool('C++ Compiler');
@@ -110,14 +114,11 @@ cppcompiler.setDirective('Debug', '-g');
 cppcompiler.setFileExtension('Source', '.cpp');
 cppcompiler.setFileExtension('Header', '.hpp');
 cppcompiler.setFileExtension('Object', '.pp.o');
+cppObjBuildItem = cppcompiler.FileExtensions.getValue('Object');
+cppObjBuildItem.setMacro('CPPOBJ_EXT');
 cppcompiler.addFileExtension( 'DependencyFile', coder.make.BuildItem('CPP_EXT', ['.cpp', depfileExtension]));
 cppcompiler.DerivedFileExtensions = {'.cpp.dep'};
 
-cppObjBuildItem = cppcompiler.FileExtensions.getValue('Object');
-cppObjBuildItem.setMacro('CPPOBJ_EXT');
-
-
-%{
 % Linker
 linker = tc.getBuildTool('Linker');
 linker.setName([info.ToolChainName, version, ' Linker']);
@@ -130,8 +131,6 @@ linker.setDirective('Debug', '-g');
 linker.setFileExtension('Executable', '.elf');
 linker.setFileExtension('Shared Library', '.so');
 linker.Libraries = {'-lm'};
-%}
-
 
 % C++ Linker
 cpplinker = tc.getBuildTool('C++ Linker');
@@ -221,23 +220,6 @@ cfg.setOption('C++ Linker', horzcat(linkerOpts, debugFlag.Linker));
 cfg.setOption('Shared Library Linker', horzcat({'-shared '}, linkerOpts, debugFlag.Linker));
 cfg.setOption('Archiver',   horzcat(archiverOpts, debugFlag.Archiver));
 
-tc.setBuildConfigurationOption('all', 'Make Tool', '-j8 -f $(MAKEFILE)');
-
-end
-
-
-function configureAssembler(toolchain)
-
-assembler = toolchain.getBuildTool('Assembler');
-assembler.setName([info.ToolChainName, version, ' Assembler']);
-assembler.setPath('$(LINARO_TOOLCHAIN_4_8)');
-assembler.setCommand('arm-linux-gnueabihf-as');
-assembler.setDirective('IncludeSearchPath', '-I');
-assembler.setDirective('PreprocessorDefine', '-D');
-assembler.setDirective('OutputFlag', '-o');
-assembler.setDirective('Debug', '-g');
-assembler.DerivedFileExtensions = {'Object'};
-assembler.setFileExtension('Source','.s');
-assembler.setFileExtension('Object', '.s.o');
+tc.setBuildConfigurationOption('all', 'Make Tool', '-f $(MAKEFILE)');
 
 end
