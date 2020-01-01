@@ -3,8 +3,8 @@ A MATLAB, Simulink, and Embedded Coder toolbox to create modern C++ based multip
 
 ## Requirements 
 ### Windows
-https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
-https://docs.docker.com/docker-for-windows/wsl-tech-preview/
+* [Installation Instructions for WSL 2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-install)
+* [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl-tech-preview/)
 ### Linux
 TBD
 ### Mac
