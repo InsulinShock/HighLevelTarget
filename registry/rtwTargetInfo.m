@@ -10,7 +10,7 @@ function config = loc_createToolchain
 config = coder.make.ToolchainInfoRegistry; % initialize
 archName = computer('arch');
 
-config(end+1).Name             = 'Cross Compiler';
+config(end+1).Name             = 'Directed Graph Build System';
 config(end).TargetHWDeviceType = {'*'};
 config(end).FileName           = fullfile(highleveltarget.utilities.getRootFolder, 'registry', 'toolchain.mat');
 config(end).Platform           = {archName};
