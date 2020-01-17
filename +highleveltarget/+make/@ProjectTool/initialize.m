@@ -10,7 +10,7 @@ ret = true;
 %     coder.make.enum.BuildAction.DOWNLOAD]);
             
 disp("Initializing project generation and running code generation checks...");
-buildInfo.BuildTools.CustomToolchainOptions;
+%% buildInfo.BuildTools.CustomToolchainOptions;
 
 disp("... project initialization complete.");
 disp("=====================================================================");

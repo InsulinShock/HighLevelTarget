@@ -22,7 +22,7 @@ classdef ProjectTool < coder.make.ProjectTool
        
     methods
         function obj = ProjectTool(~)
-            obj@coder.make.ProjectTool('High Level C++ Project');
+            obj@coder.make.ProjectTool('Dockcross | CMake');
         end
     end
     

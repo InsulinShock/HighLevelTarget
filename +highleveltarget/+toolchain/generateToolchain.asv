@@ -40,7 +40,7 @@ buildTools = tc.getBuildTools();
 
 for ii = 1:numel(buildTools)
     bt = tc.getBuildTool(buildTools{ii});
-    bt.setName(['Dummy ',bt.Name,' (Legacy)']);
+    bt.setName('Dumm
     bt.setCommand('::');
     bt.CustomValidation = 'highleveltarget.toolchain.toolValidator';    
 end

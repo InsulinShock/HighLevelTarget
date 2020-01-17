@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<productinfo version="3.0">
-   <buildconfigurationinfo AssemblyFlags="" CPPCompileFlags="" CPPLinkFlags="" CompileFlags="" LinkFlags="" Name="">
-      <SourceFiles>$(MATLAB_ROOT)/rtw/c/src/ext_mode/common/rtiostream_interface.c</SourceFiles>
-      <SourceFiles>$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/rtiostreamtcpip/rtiostream_tcpip.c</SourceFiles>
-      <SupportedOperatingSystems>all</SupportedOperatingSystems>
-      <SupportedToolchains>all</SupportedToolchains>
-   </buildconfigurationinfo>
-</productinfo>
