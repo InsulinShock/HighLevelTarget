@@ -1,7 +1,6 @@
 classdef ProjectTool < coder.make.ProjectTool
     %ANDROIDPROJECTTOOL Summary of this class goes here
-    %   Detailed explanation goes here
-    
+    %   Detailed explanation goes here    
     
     % Abstract methods for class codertarget.android.ProjectTool:
     %   terminate      	% defined in coder.make.ProjectTool

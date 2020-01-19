@@ -1,0 +1,33 @@
+classdef ValidateDigraphAttributesTest < matlab.unittest.TestCase
+    
+    methods (Test)
+        
+        function testCyclicDigraph(testCase)
+            
+            G = digraph(["fun1" "fun2"], ["fun2" "fun1"]);                     
+            
+            testCase.verifyError(...
+                @()highleveltarget.buildsystem.validateDigraphAttributes(G),...
+                "HIGHLEVELTARGET:buildSystem:digraphNotAcyclic");            
+        end
+        
+        function testFirstNodeHasInDegreeZero(testCase)
+            G = digraph(["fun1","fun3"],["fun2","fun1"]);
+            
+            testCase.verifyError(...
+                @()highleveltarget.buildsystem.validateDigraphAttributes(G),...
+                "HIGHLEVELTARGET:buildSystem:digraphNode1OutputOnly");                
+        end
+        
+        function testLastNodeHasOutDegreeZero(testCase)
+            G = digraph(["fun1","fun","fun4"],["fun3","fun2","fun3"]);
+            
+            testCase.verifyError(...
+                @()highleveltarget.buildsystem.validateDigraphAttributes(G),...
+                "HIGHLEVELTARGET:buildSystem:digraphNodeNInputOnly");                
+        end
+                  
+    end
+    
+end
+
