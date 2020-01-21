@@ -1,7 +1,10 @@
-function obj = addTask(obj,taskFunctionName)
+function obj = addTask(obj,taskName,funcName)
 %ADDTASK Summary of this function goes here
 %   Detailed explanation goes here
 
-obj.TaskDigraph = addnode(obj.TaskDigraph,taskFunctionName);
+node.Name = {char(taskName)};
+node.Function = string(funcName);
+
+obj.TaskDigraph = addnode(obj.TaskDigraph,struct2table(node));
 
 end

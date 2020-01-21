@@ -5,15 +5,18 @@ classdef BuildSystem
     properties (Access = private)
         TaskDigraph = digraph();
         Data = [];
-    end
+    end    
     
     properties (Access = private)
-        Display = [];
-        
+        Display = [];        
     end
     
     methods(Static, Access = private)
-        validateTaskFunctionSignature(functionName);        
+        validateTaskFunctionSignature(functionName);                
+    end
+    
+    methods(Static, Hidden)
+       txt = digraphCustomDataTip(obj,eventObj,NodeProperties);
     end
     
     methods(Access = private)
@@ -35,8 +38,8 @@ classdef BuildSystem
             
         end
         
-        obj = addTask(obj,taskFunctionName);
-        obj = removeTask(obj,taskFunctionName);
+        obj = addTask(obj,taskName,funcName);
+        obj = removeTask(obj,taskName);
         obj = connectTasks(obj,startTask,endTask)
         obj = disconnectTasks(obj,startTask,endTask)
         
@@ -44,7 +47,9 @@ classdef BuildSystem
         
         validate(obj); 
         
-        show(obj);
+        obj = show(obj);
+        
+        Data = data(obj);
         
     end
 end
