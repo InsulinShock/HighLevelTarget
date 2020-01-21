@@ -32,7 +32,7 @@ setDigraphBuildConfigurationOptions(tc);
 tc.addAttribute('TransformPathsWithSpaces');
 tc.addAttribute('SupportsDoubleQuotes', false);
 tc.addAttribute('SupportsUNCPaths', false);
-tc.setProjectTool('highleveltarget.make.ProjectTool');
+tc.setProjectTool('highleveltarget.buildsystem.ProjectTool');
 
 end
 

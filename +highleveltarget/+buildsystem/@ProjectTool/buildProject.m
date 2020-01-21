@@ -2,13 +2,12 @@ function [ret, context]  = buildProject(~, buildInfo, context, varargin)
 %BUILDPROJECT Build the high level target project
 %   Build the high level target project using a dockcross container.
 
+toolchainInfo = varargin{1};
+
 codeInfoFile = matfile('codeInfo.mat');
-code
+codeInfo = codeInfoFile.codeInfo;
 
-% buildInfo = matfile('buildInfo.mat');
-
-
-
+disp(context.ActiveBuildConfiguration);
 
 
 

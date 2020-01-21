@@ -1,0 +1,22 @@
+
+
+
+bs = highleveltarget.buildsystem.BuildSystem();
+
+bs.addTask("higleveltarget.buildsystem.CrossCompiler.fun1");
+bs.addTask("higleveltarget.buildsystem.CrossCompiler.fun2");
+
+bs.connectTasks(...
+    "higleveltarget.buildsystem.CrossCompiler.fun1",...
+    "higleveltarget.buildsystem.CrossCompiler.fun2");
+
+bs.addTask("higleveltarget.buildsystem.CrossCompiler.fun3");
+bs.addTask("higleveltarget.buildsystem.CrossCompiler.fun4");
+
+bs.connectTasks(...
+    "higleveltarget.buildsystem.CrossCompiler.fun1",...
+    "higleveltarget.buildsystem.CrossCompiler.fun2");
+
+bs.connectTasks(...
+    "higleveltarget.buildsystem.CrossCompiler.fun1",...
+    "higleveltarget.buildsystem.CrossCompiler.fun2");
