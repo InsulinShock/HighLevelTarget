@@ -1,10 +1,11 @@
-classdef BuildSystem
+classdef BuildSystem < handle
     %BUILDSYSTEM Summary of this class goes here
     %   Detailed explanation goes here
     
     properties (Access = private)
         TaskDigraph = digraph();
-        Data = [];
+        Data = containers.Map;
+        TaskStatus = 
     end    
     
     properties (Access = private)

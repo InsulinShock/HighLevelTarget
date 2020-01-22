@@ -3,19 +3,24 @@
 
 bs = highleveltarget.buildsystem.BuildSystem();
 
-bs = bs.addTask("fun1","highleveltarget.buildsystem.CrossCompiler.fun1");
-bs = bs.addTask("fun2","highleveltarget.buildsystem.CrossCompiler.fun2");
+bs.addTask("Start","highleveltarget.buildsystem.CrossCompiler.fun1");
+bs.addTask("Create CMakeLists","highleveltarget.buildsystem.CrossCompiler.fun2");
 
-bs = bs.connectTasks("fun1","fun2");
+bs.connectTasks("Start","Create CMakeLists");
 
-bs = bs.addTask("fun3","highleveltarget.buildsystem.CrossCompiler.fun3");
-bs = bs.addTask("fun4","highleveltarget.buildsystem.CrossCompiler.fun4");
+bs.addTask("Build for ARM7a","highleveltarget.buildsystem.CrossCompiler.fun3");
+bs.addTask("Build for Parrot Drone","highleveltarget.buildsystem.CrossCompiler.fun4");
 
-bs = bs.connectTasks("fun2","fun3");
-bs = bs.connectTasks("fun2","fun4");
+bs.connectTasks("Create CMakeLists","Build for ARM7a");
+bs.connectTasks("Create CMakeLists","Build for Parrot Drone");
 
-bs = bs.addTask("fun5","highleveltarget.buildsystem.CrossCompiler.fun5");
+bs.addTask("Load onto Parrot","highleveltarget.buildsystem.CrossCompiler.fun5");
+bs.addTask("Connect to Parrot","highleveltarget.buildsystem.CrossCompiler.fun5");
+bs.addTask("Finished","highleveltarget.buildsystem.CrossCompiler.fun5");
 
-bs = bs.connectTasks("fun3","fun5");
+bs.connectTasks("Build for ARM7a","Finished");
 
-bs = bs.connectTasks("fun4","fun5");
+bs.connectTasks("Build for Parrot Drone","Load onto Parrot");
+bs.connectTasks("Create CMakeLists","Connect to Parrot");
+bs.connectTasks("Connect to Parrot","Load onto Parrot");
+bs.connectTasks("Load onto Parrot","Finished");

@@ -2,11 +2,21 @@ function obj = run(obj,info)
 
 N = toposort(obj.TaskDigraph,'Order','stable');
 
-num = numnodes(obj.TaskDigraph);
-
-
-
 obj.Display.Children.Children 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 for ii = 1:numel(N)
         
