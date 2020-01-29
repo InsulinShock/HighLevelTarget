@@ -8,10 +8,13 @@ arguments
 end
 
 if ~isempty(obj.TaskGraph.Nodes)
-    Lia = ismember([task.Name]',[obj.TaskGraph.Nodes.Task.Name]);
+    nodes = obj.TaskGraph.Nodes.Task;
+    taskNames = [nodes.Name]';
+    
+    Lia = ismember([task.Name]',taskNames);
     assert(~any(Lia),...
         "BUILDSYSTEM:TASK:TaskAlreadyMember",...
-        "Tasks: (" + join(task(Lia).Name,", ") + ...
+        "Tasks: (" + join(taskNames(Lia),", ") + ...
         ") are already included in the job.");
 end
 

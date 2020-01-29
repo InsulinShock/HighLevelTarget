@@ -44,6 +44,9 @@ classdef Job < handle
         
         validate(obj); 
         
+        function num = numberOfTasks(obj)
+            num = obj.TaskGraph.numnodes();
+        end
     end
 end
 
