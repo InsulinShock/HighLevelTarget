@@ -1,7 +1,4 @@
 suite = matlab.unittest.TestSuite.fromFile(...
-    'HighLevelTarget\+highleveltarget\+buildsystem\ValidateTaskSyntaxTest.m');
+    '+BuildSystem\+Job\addTaskTest.m');
 result = run(suite);
 
-suite = matlab.unittest.TestSuite.fromFile(...
-    'HighLevelTarget\+highleveltarget\+buildsystem\ValidateDigraphAttributesTest.m');
-result = run(suite);
