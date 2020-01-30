@@ -8,15 +8,12 @@ arguments
 end
 
 if obj.TaskGraph.numnodes == 0
-    warning("BUILDSYSTEM:removeTask:NoTaskInJob",...
-        "BuildSystem contains no tasks; taking no action.");
+    warning(
     return;
 end
 
 if ~isempty(findnode(obj.TaskGraph,taskName))
     obj.TaskGraph = rmnode(obj.TaskGraph,taskName);
-else
-    warning("BuildSystem does not contain task (" + taskName + "); taking no action.");
 end
 
 end
